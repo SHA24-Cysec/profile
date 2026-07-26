@@ -1,0 +1,132 @@
+name: "Syukra Hadikasuma"
+handle: "@sha.org_"
+role: "Front-End Web Developer, CyberSecurity"
+location: "Padang, Sumatera Barat, Indonesia"
+status: "Open for freelance work"
+email: "syukrahadikasuma01@gmail.com"
+phone: "+6289617542539"
+whatsapp: "https://wa.me/6289617542539"
+
+cv:
+  label: "Download CV"
+  href: "assets/cv-syukra-hadikasuma.pdf"
+  meta: "PDF, 2 halaman"
+
+nav:
+  - label: "Profil"
+    href: "#signal"
+  - label: "Skill"
+    href: "#skills"
+  - label: "Layanan"
+    href: "#projects"
+  - label: "Riwayat"
+    href: "#experience"
+  - label: "Kontak"
+    href: "#contact"
+
+hero:
+  title: "Web cepat, IT rapi, keamanan bisa diuji."
+  intro: "Saya membangun website, merapikan SEO, memperbaiki perangkat, mengelola jaringan, dan memeriksa celah keamanan dasar untuk tim kecil dan bisnis lokal."
+  note: "Berbasis di Padang. Bekerja dengan Linux, Windows, jaringan, hardware, software, konten, dan dokumentasi teknis."
+  primaryCta: "Lihat layanan"
+  primaryHref: "#projects"
+  contactCta: "Hubungi saya"
+  contactHref: "#contact"
+  terminal:
+    - command: "whoami"
+      output: "Syukra Hadikasuma / Front-End Web Developer, CyberSecurity"
+    - command: "focus --active"
+      output: "Website, SEO, jaringan, IT support, security audit"
+    - command: "status --work"
+      output: "Freelance IT sejak 2019 / Padang"
+  telemetry:
+    - label: "Mode"
+      value: "Web + Security"
+    - label: "Region"
+      value: "Padang"
+    - label: "Response"
+      value: "Email / WhatsApp"
+
+stats:
+  - value: "4+"
+    label: "Tahun kerja teknologi"
+  - value: "80%"
+    label: "Kenaikan traffic organik"
+  - value: "3.38"
+    label: "IPK S1 Sistem Informasi"
+
+about:
+  eyebrow: "Profil"
+  title: "Saya menangani sisi web, perangkat, jaringan, dan keamanan dalam satu alur kerja."
+  body:
+    - "Saya mencatat masalah, menguji solusi, lalu menyerahkan hasil yang bisa dipakai. Alur ini saya pakai untuk website, SEO, troubleshooting perangkat, audit jaringan, dan bug hunting."
+    - "Saya nyaman bekerja sendiri atau bersama tim. Pemilik sistem mendapat ringkasan masalah, bukti, langkah perbaikan, dan prioritas yang jelas."
+  cards:
+    - title: "Web"
+      text: "Front-end, SEO, analytics, copywriting, content, dan perawatan halaman."
+    - title: "Security"
+      text: "Bug hunting, audit keamanan sistem, audit jaringan, dan lab pentesting terkontrol."
+    - title: "Support"
+      text: "Linux, Windows, service laptop/PC, printer, smartphone, software, dan hardware."
+
+skills:
+  eyebrow: "Skill"
+  title: "Skill yang dipakai saat eksekusi"
+  groups:
+    - name: "Web & Growth"
+      items: ["Front-End Web Developer", "SEO", "Analytics", "Copywriting", "Content Creator"]
+    - name: "Security & Network"
+      items: ["CyberSecurity", "Bug Hunter", "Audit Keamanan Sistem", "Mengatur Jaringan", "MikroTik"]
+    - name: "Support & Ops"
+      items: ["Linux", "Windows", "Service HP", "Service Printer", "Service Laptop/PC", "Problem Solving"]
+
+projects:
+  eyebrow: "Layanan"
+  title: "Layanan inti"
+  intro: "Bagian ini memuat layanan yang relevan dari CV: SEO, audit keamanan, dan support IT."
+  items:
+    - title: "SEO Growth & Content"
+      tag: "SEO / Analytics"
+      text: "Menaikkan traffic organik website sebesar 80% dalam 6 bulan lewat SEO, analytics, copywriting, dan konten."
+      link: "#contact"
+      linkLabel: "Diskusi SEO"
+    - title: "Bug Hunting & Security Audit"
+      tag: "CyberSecurity"
+      text: "Menguji celah dasar, merangkum temuan, lalu menyusun dampak dan langkah perbaikan untuk pemilik sistem."
+      link: "#contact"
+      linkLabel: "Bahas audit"
+    - title: "Freelance IT Support"
+      tag: "IT Support"
+      text: "Menangani service laptop/PC, printer, smartphone, perbaikan software, hardware, jaringan, dan pembuatan website."
+      link: "#contact"
+      linkLabel: "Hubungi"
+
+timeline:
+  eyebrow: "Riwayat"
+  title: "Pengalaman, pendidikan, sertifikasi"
+  steps:
+    - title: "Freelance IT"
+      meta: "2019 – Sekarang"
+      text: "Service laptop/PC, printer, smartphone, pembuatan website, bug hunter, SEO, content creator, dan copywriting."
+    - title: "IT Support, Dinas Kehutanan Provinsi Sumatera Barat"
+      meta: "2021"
+      text: "Mengelola data pegawai, audit keamanan jaringan, laporan ke pihak terkait, serta perbaikan software dan hardware pegawai."
+    - title: "S1 Sistem Informasi, Universitas Metamedia Padang"
+      meta: "2019 – 2024"
+      text: "Lulus dengan IPK 3.38/4.00 di Padang, Sumatera Barat."
+    - title: "Sertifikasi & Pelatihan"
+      meta: "2024 – 2025"
+      text: "MikroTik, 2024. Make In-house Hacking and Pentesting Lab, 428776, EC-Council, 2025."
+
+contact:
+  eyebrow: "Kontak"
+  title: "Kirim scope kerja. Saya cek kebutuhan dan langkah awalnya."
+  text: "Gunakan email atau WhatsApp untuk kebutuhan website, SEO, IT support, jaringan, atau audit keamanan dasar. CV tersedia dalam format PDF."
+
+socials:
+  - label: "GitHub"
+    href: "https://github.com/SHA24-Cysec"
+  - label: "Instagram"
+    href: "https://www.instagram.com/sha24org"
+  - label: "Email"
+    href: "mailto:syukrahadikasuma01@gmail.com"

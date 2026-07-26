@@ -1,0 +1,233 @@
+{{ define "main" }}
+{{ $p := dict }}
+{{ if ge hugo.Version "0.156.0" }}
+  {{ $p = hugo.Data.portfolio }}
+{{ else }}
+  {{ $p = site.Data.portfolio }}
+{{ end }}
+<div class="page-shell" id="top">
+  <div class="space-stage" aria-hidden="true">
+    <canvas class="space-canvas"></canvas>
+    <div class="cursor-glow"></div>
+    <div class="nebula nebula-a"></div>
+    <div class="nebula nebula-b"></div>
+    <div class="comet comet-a"></div>
+    <div class="comet comet-b"></div>
+    <div class="grid-horizon"></div>
+    <div class="scan-layer"></div>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="{{ $p.name }} home">
+      <span class="brand-logo-wrap" aria-hidden="true" style="width:2.65rem;height:2.65rem;overflow:hidden;border-radius:999px;display:grid;place-items:center;flex:0 0 auto;">
+        <img class="brand-logo" src="{{ "assets/logo-sha24.png" | relURL }}" alt="" width="44" height="44" style="width:2.65rem;height:2.65rem;object-fit:cover;border-radius:999px;display:block;">
+      </span>
+      <span>
+        <strong>{{ $p.name }}</strong>
+        <small>{{ $p.role }}</small>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span>Menu</span>
+      <i aria-hidden="true"></i>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Navigasi utama">
+      {{ range $p.nav }}
+        <a href="{{ .href }}">{{ .label }}</a>
+      {{ end }}
+      <a class="nav-download" href="{{ $p.cv.href | relURL }}" download>CV</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section-pad" aria-labelledby="hero-title">
+      <div class="hero-copy reveal-card">
+        <h1 id="hero-title">{{ $p.hero.title }}</h1>
+        <p class="hero-intro">{{ $p.hero.intro }}</p>
+        <p class="hero-note">{{ $p.hero.note }}</p>
+
+        <dl class="hero-stats" aria-label="Ringkasan angka">
+          {{ range $p.stats }}
+            <div>
+              <dt>{{ .value }}</dt>
+              <dd>{{ .label }}</dd>
+            </div>
+          {{ end }}
+        </dl>
+
+        <div class="hero-actions" aria-label="Aksi utama">
+          <a class="btn btn-primary magnetic" href="{{ $p.hero.primaryHref }}">{{ $p.hero.primaryCta }}</a>
+          <a class="btn btn-ghost magnetic" href="{{ $p.cv.href | relURL }}" download>{{ $p.cv.label }}</a>
+          <a class="btn btn-line magnetic" href="{{ $p.hero.contactHref }}">{{ $p.hero.contactCta }}</a>
+        </div>
+      </div>
+
+      <aside class="command-deck glass-card reveal-card" aria-label="Panel operasi">
+        <div class="deck-topline">
+          <span class="live-dot"></span>
+          <p>{{ $p.status }}</p>
+          <strong>{{ $p.handle }}</strong>
+        </div>
+
+        <div class="terminal-window">
+          <div class="terminal-bar">
+            <span></span><span></span><span></span>
+            <strong>syukra@sha-24:~</strong>
+          </div>
+          <div class="terminal-body">
+            {{ range $p.hero.terminal }}
+              <div class="terminal-line">
+                <p><span>$</span> {{ .command }}</p>
+                <strong class="typed-output" data-text="{{ .output }}">{{ .output }}</strong>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="radar-panel" aria-label="Telemetry kerja">
+          <div class="radar-visual" aria-hidden="true">
+            <span class="radar-ring ring-one"></span>
+            <span class="radar-ring ring-two"></span>
+            <span class="radar-ring ring-three"></span>
+            <span class="radar-sweep"></span>
+            <span class="radar-core"></span>
+            <span class="radar-node node-a"></span>
+            <span class="radar-node node-b"></span>
+            <span class="radar-node node-c"></span>
+          </div>
+          <ul>
+            {{ range $p.hero.telemetry }}
+              <li><span>{{ .label }}</span><strong>{{ .value }}</strong></li>
+            {{ end }}
+          </ul>
+        </div>
+
+        <div class="deck-actions">
+          <a class="magnetic" href="{{ $p.cv.href | relURL }}" download>{{ $p.cv.label }} <span>{{ $p.cv.meta }}</span></a>
+          <a class="magnetic" href="{{ $p.whatsapp }}">WhatsApp <span>{{ $p.phone }}</span></a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-pad split-section" id="signal" aria-labelledby="signal-title">
+      <div class="section-lead reveal-card">
+        <p class="eyebrow">{{ $p.about.eyebrow }}</p>
+        <h2 id="signal-title">{{ $p.about.title }}</h2>
+      </div>
+      <div class="stack-copy reveal-card">
+        {{ range $p.about.body }}
+          <p>{{ . }}</p>
+        {{ end }}
+        <div class="mini-card-grid">
+          {{ range $p.about.cards }}
+            <article class="glass-card mini-card interactive-card reveal-card">
+              <h3>{{ .title }}</h3>
+              <p>{{ .text }}</p>
+            </article>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="skills" aria-labelledby="skills-title">
+      <div class="section-head reveal-card">
+        <p class="eyebrow">{{ $p.skills.eyebrow }}</p>
+        <h2 id="skills-title">{{ $p.skills.title }}</h2>
+      </div>
+      <div class="skill-grid">
+        {{ range $index, $group := $p.skills.groups }}
+          <article class="glass-card skill-card interactive-card reveal-card">
+            <span class="card-index">0{{ add $index 1 }}</span>
+            <h3>{{ $group.name }}</h3>
+            <ul>
+              {{ range $group.items }}
+                <li>{{ . }}</li>
+              {{ end }}
+            </ul>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+
+    <section class="section-pad" id="projects" aria-labelledby="projects-title">
+      <div class="section-head section-head-wide reveal-card">
+        <div>
+          <p class="eyebrow">{{ $p.projects.eyebrow }}</p>
+          <h2 id="projects-title">{{ $p.projects.title }}</h2>
+        </div>
+        <p>{{ $p.projects.intro }}</p>
+      </div>
+      <div class="service-grid">
+        {{ range $index, $project := $p.projects.items }}
+          <article class="glass-card service-card interactive-card reveal-card">
+            <div class="service-topline">
+              <span>0{{ add $index 1 }}</span>
+              <p>{{ $project.tag }}</p>
+            </div>
+            <h3>{{ $project.title }}</h3>
+            <p>{{ $project.text }}</p>
+            <a class="magnetic" href="{{ $project.link }}" aria-label="{{ $project.linkLabel }} untuk {{ $project.title }}">
+              {{ $project.linkLabel }}
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+
+    <section class="section-pad split-section" id="experience" aria-labelledby="timeline-title">
+      <div class="section-lead reveal-card">
+        <p class="eyebrow">{{ $p.timeline.eyebrow }}</p>
+        <h2 id="timeline-title">{{ $p.timeline.title }}</h2>
+      </div>
+      <ol class="timeline-list">
+        {{ range $p.timeline.steps }}
+          <li class="glass-card interactive-card reveal-card">
+            <span aria-hidden="true"></span>
+            <div>
+              <h3>{{ .title }}</h3>
+              {{ with .meta }}<p class="timeline-meta">{{ . }}</p>{{ end }}
+              <p>{{ .text }}</p>
+            </div>
+          </li>
+        {{ end }}
+      </ol>
+    </section>
+
+    <section class="section-pad contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-card glass-card reveal-card">
+        <div>
+          <p class="eyebrow">{{ $p.contact.eyebrow }}</p>
+          <h2 id="contact-title">{{ $p.contact.title }}</h2>
+          <p>{{ $p.contact.text }}</p>
+        </div>
+
+        <div class="contact-panel">
+          <div class="contact-actions">
+            <a class="btn btn-primary magnetic" href="{{ $p.cv.href | relURL }}" download>{{ $p.cv.label }}</a>
+            <a class="btn btn-ghost magnetic" href="mailto:{{ $p.email }}">Email</a>
+            <a class="btn btn-ghost magnetic" href="{{ $p.whatsapp }}">WhatsApp</a>
+            <button class="btn btn-line magnetic" type="button" data-copy-email="{{ $p.email }}">Salin email</button>
+          </div>
+
+          <ul class="contact-list" aria-label="Detail kontak">
+            <li><span>Email</span><a href="mailto:{{ $p.email }}">{{ $p.email }}</a></li>
+            <li><span>Telepon</span><a href="tel:{{ $p.phone }}">{{ $p.phone }}</a></li>
+            <li><span>Lokasi</span><strong>{{ $p.location }}</strong></li>
+          </ul>
+
+          <ul class="social-list" aria-label="Link sosial">
+            {{ range $p.socials }}
+              <li><a class="magnetic" href="{{ .href }}">{{ .label }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+{{ end }}

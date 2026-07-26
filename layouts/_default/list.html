@@ -1,0 +1,10 @@
+{{ define "main" }}
+<main class="fallback-page" id="main">
+  <article class="glass-card fallback-card">
+    <p class="eyebrow">{{ site.Title }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}{{ . }}{{ else }}<p>Halaman ini belum punya konten.</p>{{ end }}
+    <a class="btn btn-primary" href="{{ site.Home.RelPermalink }}">Kembali ke home</a>
+  </article>
+</main>
+{{ end }}
