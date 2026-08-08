@@ -10,6 +10,8 @@
   <meta name="description" content="{{ $description }}">
   <meta name="author" content="{{ site.Params.author }}">
   <meta name="theme-color" content="{{ site.Params.themeColor }}">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}">
   <meta property="og:description" content="{{ $description }}">
   <meta property="og:type" content="website">
