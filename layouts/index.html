@@ -16,8 +16,8 @@
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="{{ $p.name }} home">
-      <span class="brand-logo-wrap" aria-hidden="true" style="width:2.65rem;height:2.65rem;overflow:hidden;border-radius:999px;display:grid;place-items:center;flex:0 0 auto;">
-        <img class="brand-logo" src="{{ "assets/logo-sha24.png" | relURL }}" alt="" width="44" height="44" style="width:2.65rem;height:2.65rem;object-fit:cover;border-radius:999px;display:block;">
+      <span class="brand-logo-wrap" aria-hidden="true" style="width:2.65rem;height:2.65rem;overflow:hidden;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;aspect-ratio:1;">
+        <img class="brand-logo" src="{{ "assets/logo-sha24.webp" | relURL }}" alt="" width="44" height="44" style="width:2.65rem;height:2.65rem;object-fit:cover;border-radius:50%;display:block;">
       </span>
       <span>
         <strong>{{ $p.name }}</strong>
@@ -94,7 +94,7 @@
             <span class="radar-node node-b"></span>
             <span class="radar-node node-c"></span>
           </div>
-          <ul>
+          <ul class="radar-readout">
             {{ range $p.hero.telemetry }}
               <li><span>{{ .label }}</span><strong>{{ .value }}</strong></li>
             {{ end }}

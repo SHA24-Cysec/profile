@@ -3,6 +3,7 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const lightFxMedia = window.matchMedia('(max-width: 779px), (hover: none) and (pointer: coarse)');
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('#site-nav');
   const progress = document.querySelector('.scroll-progress span');
@@ -57,6 +58,7 @@
 
     const particleCount = () => {
       if (reduceMotion) return 30;
+      if (lightFxMedia.matches) return width < 430 ? 16 : 22;
       if (width < 430) return 42;
       if (width < 820) return 58;
       return 86;
@@ -102,27 +104,31 @@
         context.beginPath();
         context.arc(node.x, node.y, node.r, 0, Math.PI * 2);
         context.fillStyle = node.glow ? 'rgba(255, 216, 107, 0.78)' : 'rgba(125, 255, 207, 0.62)';
-        context.shadowBlur = node.glow ? 14 : 8;
-        context.shadowColor = node.glow ? 'rgba(255, 216, 107, 0.6)' : 'rgba(125, 255, 207, 0.5)';
+        if (!lightFxMedia.matches) {
+          context.shadowBlur = node.glow ? 14 : 8;
+          context.shadowColor = node.glow ? 'rgba(255, 216, 107, 0.6)' : 'rgba(125, 255, 207, 0.5)';
+        }
         context.fill();
         context.shadowBlur = 0;
       });
 
-      const limit = width < 520 ? 92 : 124;
-      for (let index = 0; index < nodes.length; index += 1) {
-        for (let next = index + 1; next < nodes.length; next += 1) {
-          const a = nodes[index];
-          const b = nodes[next];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const distance = Math.hypot(dx, dy);
-          if (distance > limit) continue;
-          context.beginPath();
-          context.moveTo(a.x, a.y);
-          context.lineTo(b.x, b.y);
-          context.strokeStyle = `rgba(125, 255, 207, ${(1 - distance / limit) * 0.16})`;
-          context.lineWidth = 1;
-          context.stroke();
+      if (!lightFxMedia.matches) {
+        const limit = width < 520 ? 92 : 124;
+        for (let index = 0; index < nodes.length; index += 1) {
+          for (let next = index + 1; next < nodes.length; next += 1) {
+            const a = nodes[index];
+            const b = nodes[next];
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const distance = Math.hypot(dx, dy);
+            if (distance > limit) continue;
+            context.beginPath();
+            context.moveTo(a.x, a.y);
+            context.lineTo(b.x, b.y);
+            context.strokeStyle = `rgba(125, 255, 207, ${(1 - distance / limit) * 0.16})`;
+            context.lineWidth = 1;
+            context.stroke();
+          }
         }
       }
 
@@ -149,14 +155,21 @@
     if (reduceMotion) window.cancelAnimationFrame(frame);
 
     window.addEventListener('resize', resize, { passive: true });
-    window.addEventListener('pointermove', (event) => {
-      pointer.x = event.clientX;
-      pointer.y = event.clientY;
-      pointer.active = true;
-    }, { passive: true });
-    window.addEventListener('pointerleave', () => {
-      pointer.active = false;
-    });
+    if (lightFxMedia.addEventListener) {
+      lightFxMedia.addEventListener('change', resize);
+    } else {
+      lightFxMedia.addListener(resize);
+    }
+    if (finePointer) {
+      window.addEventListener('pointermove', (event) => {
+        pointer.x = event.clientX;
+        pointer.y = event.clientY;
+        pointer.active = true;
+      }, { passive: true });
+      window.addEventListener('pointerleave', () => {
+        pointer.active = false;
+      });
+    }
     document.addEventListener('visibilitychange', () => {
       running = !document.hidden && !reduceMotion;
       if (running) draw();
