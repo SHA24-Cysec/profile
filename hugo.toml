@@ -2,7 +2,7 @@ baseURL = 'https://profile.shasec.my.id/'
 locale = 'id-ID'
 title = 'Syukra Hadikasuma'
 enableRobotsTXT = true
-relativeURLs = true
+relativeURLs = false
 canonifyURLs = false
 disableKinds = ['taxonomy', 'term', 'RSS']
 
